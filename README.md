@@ -181,8 +181,14 @@ to run.
 ### 4.3 Enable Web Analytics
 
 In the Pages project → **Metrics** → enable **Web Analytics**. Cloudflare injects
-its own beacon automatically (no snippet to paste). This gives you Core Web Vitals
-and an independent visitor count that never uses cookies or fingerprints.
+its own beacon automatically **on the next deployment** (no snippet to paste).
+This gives you Core Web Vitals and an independent visitor count that never uses
+cookies or fingerprints.
+
+The beacon loads from `https://static.cloudflareinsights.com` and reports to
+`https://cloudflareinsights.com`, so both hosts are allowed in the
+`Content-Security-Policy` in `_headers`. If you ever disable Web Analytics, you can
+remove those two entries.
 
 ### 4.4 Replace the placeholder domain
 
