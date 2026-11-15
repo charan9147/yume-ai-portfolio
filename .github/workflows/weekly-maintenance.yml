@@ -65,7 +65,7 @@ jobs:
               'git push        # Cloudflare Pages rebuilds automatically',
               '```',
               '',
-              '_Opened automatically by `.github/workflows/weekly-maintenance.yml`. Close it when done — next week\\'s issue is created only when this one is closed._',
+              '_Opened automatically by `.github/workflows/weekly-maintenance.yml`. Close it when done — the next issue is created only when this one is closed._',
             ].join('\n');
 
             await github.rest.issues.create({
