@@ -8,6 +8,9 @@
 
 One Vision. Four Languages. One Intelligent Future. · India 🇮🇳 × Japan 🇯🇵
 
+**Live:** https://yume-ai.pages.dev · **Private dashboard:** https://yume-ai.pages.dev/dashboard
+(repo: https://github.com/charan9147/yume-ai-portfolio)
+
 ---
 
 ## 1. Run it
