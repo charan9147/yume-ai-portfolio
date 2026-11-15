@@ -259,6 +259,23 @@ linked from the public site.
 Counts start at zero; a visit is recorded the first time a real visitor loads the
 site after the bindings exist.
 
+### Free-tier limits (and what to do)
+
+Each visit sends **two** small requests: one page view (with the session flag) at
+load, one duration at exit. That is 4 KV writes per visit, so the free KV
+allowance (1,000 writes/day) covers roughly **250 visits a day** — far above what
+a personal portfolio sees. If you ever outgrow it:
+
+- Cloudflare **Web Analytics** (enabled in 4.3) keeps counting independently and
+  has no such limit — treat it as the authoritative number.
+- Or upgrade the KV plan, or move the counters to D1 / Workers Analytics Engine
+  (the `functions/` code is small enough to port).
+
+KV is eventually consistent and not built for high-frequency counters; two
+visitors landing in the same second can collide. For a portfolio that trade-off
+is fine, and it is why the dashboard shows aggregates only, never an exact count
+you would bill on.
+
 ---
 
 ## 6. Maintenance

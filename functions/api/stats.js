@@ -34,12 +34,21 @@ function parse(raw) {
     value = null;
   }
   if (!value || typeof value !== 'object') return blank();
+
+  const countries = value.countries && typeof value.countries === 'object'
+    ? Object.fromEntries(
+        Object.entries(value.countries)
+          .filter(([code, n]) => /^[A-Z]{2}$/.test(code) && Number.isFinite(Number(n)) && Number(n) >= 0)
+          .map(([code, n]) => [code, Number(n)])
+      )
+    : {};
+
   return {
     pv: Math.max(0, Number(value.pv) || 0),
     ss: Math.max(0, Number(value.ss) || 0),
     durSum: Math.max(0, Number(value.durSum) || 0),
     durN: Math.max(0, Number(value.durN) || 0),
-    countries: value.countries && typeof value.countries === 'object' ? value.countries : {},
+    countries,
   };
 }
 

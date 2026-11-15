@@ -42,8 +42,7 @@
     /* private mode without storage — count the view only */
   }
 
-  send({ type: 'view', path: location.pathname });
-  if (newSession) send({ type: 'session' });
+  send({ type: 'view', path: location.pathname, session: newSession });
 
   const started = Date.now();
   let durationSent = false;

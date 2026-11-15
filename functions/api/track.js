@@ -91,6 +91,12 @@ export async function onRequestPost({ request, env }) {
     day.pv += 1;
     totals.pv += 1;
 
+    // A new session is sent on the same request to halve KV writes.
+    if (body.session === true) {
+      day.ss += 1;
+      totals.ss += 1;
+    }
+
     const country = (request.cf && request.cf.country) || 'XX';
     if (/^[A-Z]{2}$/.test(country)) {
       day.countries[country] = (day.countries[country] || 0) + 1;
