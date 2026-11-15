@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="YUME AI">
+  <defs>
+    <linearGradient id="g" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#46e6ff"/>
+      <stop offset="0.55" stop-color="#7dd3fc"/>
+      <stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.42" r="0.6">
+      <stop offset="0" stop-color="#46e6ff" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#46e6ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#04060e"/>
+  <rect width="64" height="64" rx="16" fill="url(#glow)"/>
+  <circle cx="32" cy="32" r="21" fill="none" stroke="#46e6ff" stroke-opacity="0.28" stroke-width="1"/>
+  <text x="32" y="43" text-anchor="middle" font-family="'Noto Sans JP','Yu Gothic',sans-serif" font-size="29" font-weight="600" fill="url(#g)">夢</text>
+</svg>

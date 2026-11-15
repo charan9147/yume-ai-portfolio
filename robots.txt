@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard.html
+Disallow: /api/
+
+# Update this after deployment if you use a custom domain.
+Sitemap: https://yume-ai.pages.dev/sitemap.xml

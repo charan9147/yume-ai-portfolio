@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Visitor dashboard — YUME AI</title>
+<meta name="robots" content="noindex, nofollow, noarchive" />
+<meta name="referrer" content="no-referrer" />
+<meta name="theme-color" content="#04060e" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #04060e;
+    --panel: rgba(11, 21, 42, .58);
+    --blue: #2f6bff;
+    --cyan: #46e6ff;
+    --violet: #8b5cf6;
+    --text: #eaf0ff;
+    --muted: #93a4c6;
+    --line: rgba(140, 170, 255, .14);
+    --line-2: rgba(140, 170, 255, .26);
+    --font-display: 'Sora', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    --ease: cubic-bezier(.22, 1, .36, 1);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+      radial-gradient(900px 520px at 12% -8%, rgba(47, 107, 255, .20), transparent 62%),
+      radial-gradient(780px 520px at 92% 8%, rgba(139, 92, 246, .14), transparent 62%),
+      var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .shell {
+    width: min(1120px, 100% - 40px);
+    margin: 0 auto;
+    padding: clamp(28px, 5vw, 56px) 0 64px;
+  }
+  .topbar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: clamp(26px, 4vw, 44px);
+  }
+  .logo {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .logo .mark {
+    font-family: 'Noto Sans JP', var(--font-display);
+    font-size: 26px;
+    letter-spacing: 0;
+    line-height: 1;
+    background: linear-gradient(150deg, #cdf6ff, var(--cyan) 52%, var(--violet));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .logo em { font-style: normal; color: var(--cyan); }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: var(--cyan);
+  }
+  .topbar .spacer { flex: 1; }
+  .ghost-link {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--muted);
+    padding: 8px 12px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    transition: color .25s, border-color .25s;
+  }
+  .ghost-link:hover { color: var(--cyan); border-color: rgba(70, 230, 255, .4); }
+
+  h1 {
+    margin: 8px 0 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3.4vw, 2.15rem);
+    font-weight: 600;
+    letter-spacing: -.03em;
+    line-height: 1.15;
+  }
+  .sub { margin: 10px 0 0; max-width: 62ch; color: var(--muted); font-size: 13.5px; }
+
+  .panel {
+    position: relative;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 40px 90px -60px #000, inset 0 1px 0 rgba(255, 255, 255, .06);
+  }
+
+  /* ---------- Gate ---------- */
+  .gate { max-width: 520px; margin: clamp(30px, 6vw, 64px) 0 0; padding: clamp(24px, 4vw, 36px); }
+  .gate h2 {
+    margin: 10px 0 6px;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: -.02em;
+  }
+  .gate p { margin: 0 0 22px; color: var(--muted); font-size: 13px; }
+  .field { display: flex; gap: 10px; flex-wrap: wrap; }
+  .field input {
+    flex: 1 1 210px;
+    min-width: 0;
+    padding: 13px 15px;
+    border-radius: 11px;
+    border: 1px solid var(--line-2);
+    background: rgba(4, 9, 20, .72);
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: .04em;
+    outline: none;
+    transition: border-color .25s, box-shadow .25s;
+  }
+  .field input:focus {
+    border-color: rgba(70, 230, 255, .55);
+    box-shadow: 0 0 0 3px rgba(70, 230, 255, .12);
+  }
+  .field input::placeholder { color: rgba(147, 164, 198, .5); letter-spacing: .1em; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px 20px;
+    border: 0;
+    border-radius: 11px;
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    color: #04060e;
+    background: linear-gradient(120deg, #a9f2ff, var(--cyan) 40%, #5b8dff);
+    box-shadow: 0 14px 30px -18px rgba(70, 230, 255, .9);
+    transition: transform .22s var(--ease), filter .22s;
+  }
+  .btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
+  .btn:disabled { opacity: .55; cursor: progress; transform: none; }
+  .btn-quiet {
+    color: var(--text);
+    background: rgba(255, 255, 255, .05);
+    border: 1px solid var(--line-2);
+    box-shadow: none;
+    font-weight: 500;
+  }
+  .btn-quiet:hover { border-color: rgba(70, 230, 255, .42); filter: none; }
+  .err {
+    margin: 16px 0 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.6;
+    color: #ff9db0;
+    min-height: 1em;
+  }
+  .err.ok { color: #7df0b0; }
+
+  /* ---------- Metrics ---------- */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: clamp(26px, 4vw, 40px);
+  }
+  .metric { padding: 20px 20px 18px; overflow: hidden; }
+  .metric::after {
+    content: "";
+    position: absolute;
+    inset: auto -30% -70% auto;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(70, 230, 255, .18), transparent 68%);
+    pointer-events: none;
+  }
+  .metric .k {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .metric .v {
+    display: block;
+    margin-top: 12px;
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 3.6vw, 2.7rem);
+    font-weight: 600;
+    letter-spacing: -.045em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    background: linear-gradient(160deg, #ffffff, #cfe6ff 46%, var(--cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .metric .n { display: block; margin-top: 9px; font-size: 10.5px; color: rgba(147, 164, 198, .8); }
+
+  /* ---------- Chart ---------- */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1.55fr 1fr;
+    gap: 14px;
+    margin-top: 14px;
+    align-items: stretch;
+  }
+  .card { padding: 22px 22px 18px; }
+  .card-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  .card-head h2 {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .card-head .hint { font-size: 10px; color: rgba(147, 164, 198, .6); }
+
+  .chart {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    gap: clamp(4px, .9vw, 10px);
+    height: 170px;
+    padding-top: 8px;
+  }
+  .chart .gridline {
+    position: absolute;
+    left: 0; right: 0;
+    border-top: 1px dashed rgba(140, 170, 255, .10);
+    pointer-events: none;
+  }
+  .bar-col {
+    position: relative;
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    min-width: 0;
+  }
+  .bar {
+    position: relative;
+    width: 100%;
+    max-width: 34px;
+    border-radius: 5px 5px 2px 2px;
+    background: linear-gradient(180deg, var(--cyan), #3f8cff 62%, rgba(47, 107, 255, .35));
+    box-shadow: 0 0 18px -6px rgba(70, 230, 255, .65);
+    min-height: 2px;
+    transition: height .5s var(--ease), filter .2s;
+  }
+  .bar.zero { background: rgba(140, 170, 255, .16); box-shadow: none; }
+  .bar-col:hover .bar { filter: brightness(1.18); }
+  .bar-tip {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translate(-50%, 4px);
+    padding: 6px 9px;
+    border-radius: 7px;
+    white-space: nowrap;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    color: #dff4ff;
+    background: rgba(6, 13, 28, .96);
+    border: 1px solid var(--line-2);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .18s, transform .18s;
+    z-index: 3;
+  }
+  .bar-col:hover .bar-tip { opacity: 1; transform: translate(-50%, 0); }
+  .x-axis {
+    display: flex;
+    gap: clamp(4px, .9vw, 10px);
+    margin-top: 10px;
+  }
+  .x-axis span {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: .02em;
+    color: rgba(147, 164, 198, .62);
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  /* ---------- Countries ---------- */
+  .countries { display: flex; flex-direction: column; gap: 11px; }
+  .country {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 4px 12px;
+    align-items: baseline;
+  }
+  .country .name {
+    font-size: 12.5px;
+    color: #dbe7fb;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .country .n { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+  .country .track {
+    grid-column: 1 / -1;
+    height: 4px;
+    border-radius: 99px;
+    background: rgba(140, 170, 255, .12);
+    overflow: hidden;
+  }
+  .country .fill {
+    display: block;
+    height: 100%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+    box-shadow: 0 0 10px rgba(70, 230, 255, .45);
+    transition: width .6s var(--ease);
+  }
+  .empty {
+    padding: 26px 0;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(147, 164, 198, .72);
+  }
+
+  .footrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: .08em;
+    color: rgba(147, 164, 198, .6);
+  }
+  .footrow .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--cyan); }
+  .footrow .spacer { flex: 1; }
+  .privacy-note {
+    margin: 22px 0 0;
+    padding: 14px 16px;
+    border-left: 2px solid rgba(70, 230, 255, .45);
+    border-radius: 0 10px 10px 0;
+    background: rgba(70, 230, 255, .045);
+    font-size: 11.5px;
+    line-height: 1.7;
+    color: rgba(190, 208, 232, .82);
+  }
+  .hidden { display: none !important; }
+
+  .skeleton { position: relative; overflow: hidden; }
+  .skeleton::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, .07) 48%, transparent 76%);
+    animation: sweep 1.5s linear infinite;
+  }
+  @keyframes sweep { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+
+  @media (max-width: 900px) {
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 720px) {
+    .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .chart { height: 148px; }
+  }
+  @media (max-width: 420px) {
+    .metrics { grid-template-columns: 1fr; }
+    .shell { width: calc(100% - 28px); }
+    .field .btn { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <div class="topbar">
+    <a class="logo" href="/"><span class="mark" aria-hidden="true">夢</span><span>YUME <em>AI</em></span></a>
+    <span class="eyebrow">Visitor dashboard</span>
+    <span class="spacer"></span>
+    <a class="ghost-link" href="/">View site ↗</a>
+    <button class="ghost-link hidden" id="signout" type="button">Lock</button>
+  </div>
+
+  <h1>YUME AI — Visitor dashboard</h1>
+  <p class="sub">
+    Aggregate traffic for the public site. Counts only — no cookies, no IP addresses,
+    no profiles, no personal data.
+  </p>
+
+  <!-- Gate -->
+  <section class="panel gate" id="gate">
+    <span class="eyebrow">Private</span>
+    <h2>Enter your dashboard key</h2>
+    <p>The key is the <code>ANALYTICS_KEY</code> value you set in Cloudflare Pages. It is never stored on a server — only in this browser tab.</p>
+    <form class="field" id="gate-form" autocomplete="off">
+      <input id="key" type="password" name="key" placeholder="ANALYTICS KEY" aria-label="Dashboard key" spellcheck="false" />
+      <button class="btn" id="unlock" type="submit">Unlock</button>
+    </form>
+    <p class="err" id="gate-msg" role="status" aria-live="polite"></p>
+  </section>
+
+  <!-- Dashboard -->
+  <div id="dash" class="hidden">
+    <div class="metrics">
+      <div class="panel metric" style="position:relative">
+        <span class="k">Total visitors</span>
+        <span class="v" id="m-visitors">—</span>
+        <span class="n">sessions started</span>
+      </div>
+      <div class="panel metric" style="position:relative">
+        <span class="k">Page views</span>
+        <span class="v" id="m-pageviews">—</span>
+        <span class="n">all pages</span>
+      </div>
+      <div class="panel metric" style="position:relative">
+        <span class="k">Countries / regions</span>
+        <span class="v" id="m-countries">—</span>
+        <span class="n">distinct origins</span>
+      </div>
+      <div class="panel metric" style="position:relative">
+        <span class="k">Visit duration</span>
+        <span class="v" id="m-duration">—</span>
+        <span class="n">average session</span>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <section class="panel card">
+        <div class="card-head">
+          <h2>Last 14 days</h2>
+          <span class="hint">page views per day</span>
+        </div>
+        <div class="chart" id="chart" aria-label="Page views per day, last 14 days"></div>
+        <div class="x-axis" id="xaxis"></div>
+      </section>
+
+      <section class="panel card">
+        <div class="card-head">
+          <h2>Top countries</h2>
+          <span class="hint">all time</span>
+        </div>
+        <div class="countries" id="countries">
+          <p class="empty">No visits recorded yet.</p>
+        </div>
+      </section>
+    </div>
+
+    <div class="footrow">
+      <span class="dot" aria-hidden="true"></span>
+      <span id="updated">—</span>
+      <span class="spacer"></span>
+      <button class="ghost-link" id="refresh" type="button">Refresh</button>
+    </div>
+
+    <p class="privacy-note">
+      <b>How this is measured.</b> The site counts a page view, a session start and how long
+      a visit lasted. Country totals come from Cloudflare's edge country code. Your IP address
+      is never read, stored or hashed, and no visitor is ever identified. Visitors with
+      “Do Not Track” enabled are not counted.
+    </p>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var STORE = 'yume:dash-key';
+  var gate = document.getElementById('gate');
+  var gateForm = document.getElementById('gate-form');
+  var keyInput = document.getElementById('key');
+  var gateMsg = document.getElementById('gate-msg');
+  var unlock = document.getElementById('unlock');
+  var dash = document.getElementById('dash');
+  var signout = document.getElementById('signout');
+  var refreshBtn = document.getElementById('refresh');
+
+  function readKey() {
+    try { return sessionStorage.getItem(STORE) || ''; } catch (e) { return ''; }
+  }
+  function saveKey(k) {
+    try { sessionStorage.setItem(STORE, k); } catch (e) { /* private mode */ }
+  }
+  function clearKey() {
+    try { sessionStorage.removeItem(STORE); } catch (e) {}
+  }
+
+  function num(n) {
+    if (!Number.isFinite(n)) return '—';
+    return n.toLocaleString('en-US');
+  }
+
+  function duration(seconds) {
+    if (!seconds || !Number.isFinite(seconds)) return '—';
+    var m = Math.floor(seconds / 60);
+    var s = Math.round(seconds % 60);
+    if (m >= 60) return Math.floor(m / 60) + 'h ' + (m % 60) + 'm';
+    if (m > 0) return m + 'm ' + s + 's';
+    return s + 's';
+  }
+
+  function regionName(code) {
+    try {
+      var dn = new Intl.DisplayNames(['en'], { type: 'region' });
+      var name = dn.of(code);
+      if (name && name !== code) return name;
+    } catch (e) { /* not supported */ }
+    return code === 'XX' ? 'Unknown' : code;
+  }
+
+  function fail(message, ok) {
+    gateMsg.textContent = message;
+    gateMsg.className = ok ? 'err ok' : 'err';
+  }
+
+  function showDash() {
+    gate.classList.add('hidden');
+    dash.classList.remove('hidden');
+    signout.classList.remove('hidden');
+    keyInput.value = '';
+  }
+
+  function render(data) {
+    document.getElementById('m-visitors').textContent = num(data.visitors);
+    document.getElementById('m-pageviews').textContent = num(data.pageviews);
+    document.getElementById('m-countries').textContent = num(data.countries);
+    document.getElementById('m-duration').textContent = duration(data.avgDuration);
+
+    var series = Array.isArray(data.series) ? data.series : [];
+    var max = 1;
+    series.forEach(function (d) { if (d.pv > max) max = d.pv; });
+
+    var chart = document.getElementById('chart');
+    var xaxis = document.getElementById('xaxis');
+    chart.innerHTML = '';
+    xaxis.innerHTML = '';
+
+    [0.25, 0.5, 0.75].forEach(function (p) {
+      var line = document.createElement('span');
+      line.className = 'gridline';
+      line.style.bottom = (p * 100) + '%';
+      chart.appendChild(line);
+    });
+
+    series.forEach(function (d, i) {
+      var col = document.createElement('div');
+      col.className = 'bar-col';
+
+      var tip = document.createElement('span');
+      tip.className = 'bar-tip';
+      tip.textContent = d.date.slice(5) + ' · ' + d.pv + ' views';
+
+      var bar = document.createElement('span');
+      bar.className = 'bar' + (d.pv ? '' : ' zero');
+      var pct = d.pv ? Math.max(3, (d.pv / max) * 100) : 0;
+      bar.style.height = pct + '%';
+
+      col.appendChild(tip);
+      col.appendChild(bar);
+      chart.appendChild(col);
+
+      var label = document.createElement('span');
+      label.textContent = (i % 2 === 0 || i === series.length - 1) ? d.date.slice(5) : '';
+      xaxis.appendChild(label);
+    });
+
+    var countries = Array.isArray(data.topCountries) ? data.topCountries : [];
+    var box = document.getElementById('countries');
+    box.innerHTML = '';
+
+    if (!countries.length) {
+      box.innerHTML = '<p class="empty">No visits recorded yet.</p>';
+    } else {
+      var top = countries[0].n || 1;
+      countries.forEach(function (c) {
+        var row = document.createElement('div');
+        row.className = 'country';
+
+        var name = document.createElement('span');
+        name.className = 'name';
+        name.textContent = regionName(c.code);
+
+        var n = document.createElement('span');
+        n.className = 'n';
+        n.textContent = num(c.n);
+
+        var track = document.createElement('span');
+        track.className = 'track';
+        var fill = document.createElement('span');
+        fill.className = 'fill';
+        fill.style.width = Math.max(3, (c.n / top) * 100) + '%';
+        track.appendChild(fill);
+
+        row.appendChild(name);
+        row.appendChild(n);
+        row.appendChild(track);
+        box.appendChild(row);
+      });
+    }
+
+    var when = data.updated ? new Date(data.updated) : new Date();
+    document.getElementById('updated').textContent =
+      'Updated ' + when.toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' }) + ' · aggregate only';
+  }
+
+  function load(key) {
+    gateMsg.textContent = '';
+    unlock.disabled = true;
+    unlock.textContent = 'Checking…';
+    if (refreshBtn) refreshBtn.disabled = true;
+
+    fetch('/api/stats', {
+      headers: { 'x-yume-key': key },
+      cache: 'no-store'
+    })
+      .then(function (res) {
+        return res.json().catch(function () { return {}; }).then(function (body) {
+          return { status: res.status, body: body };
+        });
+      })
+      .then(function (r) {
+        var b = r.body || {};
+        if (r.status === 200 && b.ok) {
+          saveKey(key);
+          showDash();
+          render(b);
+          return;
+        }
+        clearKey();
+        if (r.status === 401) {
+          fail('That key was not accepted. Check ANALYTICS_KEY in Cloudflare → Pages → Settings → Variables.');
+        } else if (r.status === 503) {
+          fail('Analytics storage is not connected yet. Add a KV namespace binding named YUME_STATS, then redeploy.');
+        } else if (r.status === 501) {
+          fail('The dashboard key is not set on the server. Add a secret named ANALYTICS_KEY, then redeploy.');
+        } else if (r.status === 404) {
+          fail('The stats API is not deployed. Cloudflare Pages needs the Git integration (functions/ are not uploaded by drag-and-drop).');
+        } else {
+          fail('Unexpected response (' + r.status + (b.error ? ' · ' + b.error : '') + '). Try again in a moment.');
+        }
+      })
+      .catch(function () {
+        fail('Could not reach the stats API. Check your connection, then retry.');
+      })
+      .then(function () {
+        unlock.disabled = false;
+        unlock.textContent = 'Unlock';
+        if (refreshBtn) refreshBtn.disabled = false;
+      });
+  }
+
+  gateForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var key = keyInput.value.trim();
+    if (!key) { fail('Enter the dashboard key first.'); keyInput.focus(); return; }
+    load(key);
+  });
+
+  if (refreshBtn) {
+    refreshBtn.addEventListener('click', function () {
+      var key = readKey();
+      if (key) load(key);
+    });
+  }
+
+  signout.addEventListener('click', function () {
+    clearKey();
+    dash.classList.add('hidden');
+    signout.classList.add('hidden');
+    gate.classList.remove('hidden');
+    gateMsg.textContent = '';
+    gateMsg.className = 'err';
+    keyInput.focus();
+  });
+
+  var saved = readKey();
+  if (saved) {
+    load(saved);
+  }
+})();
+</script>
+</body>
+</html>

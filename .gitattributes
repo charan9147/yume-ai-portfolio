@@ -1,0 +1,14 @@
+# Normalize line endings — keeps the repo consistent across Windows/macOS/Linux.
+* text=auto eol=lf
+
+# Binary assets must not be converted.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+
+# GitHub Actions and shell scripts stay LF.
+*.yml text eol=lf
+*.yaml text eol=lf
+*.sh text eol=lf

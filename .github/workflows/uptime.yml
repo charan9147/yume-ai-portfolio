@@ -1,0 +1,145 @@
+name: Uptime check
+
+# Checks the live site every 6 hours and opens an issue if it breaks.
+# Optional: set a repository variable SITE_URL (Settings → Secrets and variables
+# → Actions → Variables) to your real address. Falls back to the default below.
+
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: uptime
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    name: Probe live site
+    runs-on: ubuntu-latest
+    env:
+      SITE_URL: ${{ vars.SITE_URL || 'https://yume-ai.pages.dev' }}
+    steps:
+      - name: Check homepage, key assets and 404 page
+        id: probe
+        shell: bash
+        run: |
+          set -uo pipefail
+          results=""
+          failed=0
+
+          check() {
+            local label="$1" url="$2" expect="$3"
+            local code
+            code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 --retry 3 --retry-delay 4 "$url" || echo 000)
+            local ok="fail"
+            if [ "$code" = "$expect" ]; then ok="ok"; else failed=1; fi
+            results="${results}- ${label}: \`${code}\` (expected \`${expect}\`) → **${ok}**%0A"
+            echo "${label}: ${code}"
+          }
+
+          check "Homepage"            "$SITE_URL/"                                 200
+          check "Stylesheet"          "$SITE_URL/styles.css"                       200
+          check "Analytics beacon"    "$SITE_URL/analytics.js"                     200
+          check "Main portrait"       "$SITE_URL/assets/sai-charan-portrait.jpg"   200
+          check "Founder photo"       "$SITE_URL/assets/sai-charan-founder.jpg"    200
+          check "404 page"            "$SITE_URL/definitely-not-a-page-xyz"        404
+
+          # The homepage must still be the real site, not a parked or error page.
+          curl -sS --max-time 30 "$SITE_URL/" -o /tmp/home.html || true
+          if grep -qi "YUME AI" /tmp/home.html; then
+            results="${results}- Content marker \`YUME AI\`: **ok**%0A"
+          else
+            results="${results}- Content marker \`YUME AI\`: **fail**%0A"
+            failed=1
+          fi
+
+          echo "result<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$results" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+          echo "failed=$failed" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Open or update incident issue
+        if: steps.probe.outputs.failed == '1'
+        uses: actions/github-script@v7
+        env:
+          SITE_URL: ${{ vars.SITE_URL || 'https://yume-ai.pages.dev' }}
+          RESULT: ${{ steps.probe.outputs.result }}
+        with:
+          script: |
+            const url = process.env.SITE_URL;
+            const body = [
+              `Automated uptime check failed at ${new Date().toISOString()}.`,
+              '',
+              '| Check | Result |',
+              '|---|---|',
+              process.env.RESULT
+                .split('%0A')
+                .filter(Boolean)
+                .map((line) => line.replace(/^- /, '').replace(' → ', ' | '))
+                .join('\n'),
+              '',
+              '### Where to look',
+              '1. Cloudflare dashboard → Workers & Pages → the project → **Deployments** (did the last build fail?).',
+              '2. Cloudflare → **Functions** real-time logs for `/api/*` errors.',
+              `3. Open ${url} yourself and confirm what a visitor sees.`,
+              '',
+              '_Opened automatically by `.github/workflows/uptime.yml`._',
+            ].join('\n');
+
+            const open = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'uptime',
+              per_page: 5,
+            });
+
+            if (open.data.length) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: open.data[0].number,
+                body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `Site down — uptime check failed (${new Date().toISOString().slice(0, 16).replace('T', ' ')} UTC)`,
+                labels: ['uptime'],
+                body,
+              });
+            }
+
+      - name: Close incident issue when healthy again
+        if: steps.probe.outputs.failed == '0'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const open = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'uptime',
+              per_page: 5,
+            });
+            for (const issue of open.data) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: `Recovered — the uptime check passed again at ${new Date().toISOString()}.`,
+              });
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                state: 'closed',
+              });
+            }

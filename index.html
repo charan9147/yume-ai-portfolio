@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sai Charan — YUME AI · Building Robots That Understand Humans</title>
+<meta name="description" content="YUME AI — the research portfolio of Sai Charan, an aspiring AI, Machine Learning and Robotics researcher from India, working towards studying and conducting research in Japan." />
+<meta name="theme-color" content="#04060e" />
+<meta name="author" content="Sai Charan" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="YUME AI — Building Robots That Understand Humans" />
+<meta property="og:description" content="One Vision. Four Languages. One Intelligent Future. The research portfolio of Sai Charan — India × Japan." />
+<meta property="og:image" content="assets/sai-charan-portrait.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css?v=5" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Sai Charan",
+  "nationality": "Indian",
+  "description": "Aspiring AI, Machine Learning and Robotics researcher from India, working towards higher education and research in Japan.",
+  "knowsAbout": ["Artificial Intelligence", "Machine Learning", "Natural Language Processing", "Robotics", "Mechatronics", "Human-Robot Interaction"],
+  "email": "mailto:ksaicharan961@gmail.com",
+  "telephone": "+91-8977330221",
+  "address": { "@type": "PostalAddress", "addressCountry": "IN" }
+}
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ============ Loader ============ -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-core">
+    <div class="loader-kanji">夢</div>
+    <div class="loader-name">YUME<span>AI</span></div>
+    <div class="loader-bar"><i></i></div>
+    <div class="loader-caption">INITIALISING&nbsp;·&nbsp;夢&nbsp;·&nbsp;ONE VISION</div>
+  </div>
+</div>
+
+<!-- ============ Ambient layers ============ -->
+<div class="bg" aria-hidden="true">
+  <span class="orb orb-a"></span>
+  <span class="orb orb-b"></span>
+  <span class="orb orb-c"></span>
+</div>
+<div class="grid-overlay" aria-hidden="true"></div>
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<!-- ============ Nav ============ -->
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="YUME AI — back to top">
+    <span class="brand-mark">夢</span>
+    <span class="brand-text">
+      <b>YUME<span>AI</span></b>
+      <span>Sai Charan · India × Japan</span>
+    </span>
+  </a>
+
+  <nav class="nav-links" id="nav-links" aria-label="Main navigation">
+    <a href="#researcher">Researcher</a>
+    <a href="#profile">Profile</a>
+    <a href="#yume">Mission</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#journey">Journey</a>
+    <a href="#japan">Japan</a>
+    <a href="#founder">Founder</a>
+  </nav>
+
+  <a class="btn btn-primary nav-cta" href="#contact">Let's talk <span class="arrow">↗</span></a>
+
+  <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+    <span></span>
+  </button>
+</header>
+
+<main id="main">
+
+<!-- ================================================================
+     ACT I — ARRIVAL
+================================================================ -->
+<section class="hero" id="top">
+  <div class="hero-grid">
+
+    <div class="hero-copy">
+      <p class="eyebrow reveal">
+        <span class="pulse"></span> YUME AI <span class="sep">/</span> 夢 <span class="sep">/</span> RESEARCH PORTFOLIO
+      </p>
+
+      <h1 class="hero-title reveal" style="--d:.06s">
+        Building robots<br />
+        that understand<br />
+        <span class="grad">humans.</span>
+      </h1>
+
+      <p class="hero-lede reveal" style="--d:.14s">
+        An aspiring AI, Machine Learning and Robotics researcher from India,
+        working towards studying and conducting research in Japan.
+      </p>
+
+      <p class="tagline reveal" style="--d:.2s">
+        One Vision. Four Languages. One Intelligent Future.
+      </p>
+
+      <div class="hero-actions reveal" style="--d:.26s">
+        <a class="btn btn-primary" href="#yume">Explore the mission <span class="arrow">↗</span></a>
+        <a class="btn btn-ghost" href="#researcher">Meet the researcher</a>
+      </div>
+
+      <ul class="hero-facts reveal" style="--d:.34s">
+        <li><b>India</b> 🇮🇳 <span>origin</span></li>
+        <li><b>Japan</b> 🇯🇵 <span>destination</span></li>
+        <li><b>AI · ML · Robotics</b> <span>focus</span></li>
+      </ul>
+    </div>
+
+    <!-- Portrait: first appearance -->
+    <figure class="portrait-wrap reveal" style="--d:.18s">
+      <div class="portrait-orbit" aria-hidden="true">
+        <span class="orbit orbit-1"></span>
+        <span class="orbit orbit-2"></span>
+        <span class="orbit-dot"></span>
+      </div>
+
+      <div class="portrait" id="hero-portrait">
+        <div class="portrait-img">
+          <img src="assets/sai-charan-portrait.jpg" alt="Portrait of Sai Charan" width="1600" height="1017" fetchpriority="high" decoding="async" />
+        </div>
+        <span class="portrait-scan" aria-hidden="true"></span>
+        <span class="portrait-vignette" aria-hidden="true"></span>
+
+        <span class="hud hud-tl" aria-hidden="true"></span>
+        <span class="hud hud-tr" aria-hidden="true"></span>
+        <span class="hud hud-bl" aria-hidden="true"></span>
+        <span class="hud hud-br" aria-hidden="true"></span>
+
+        <figcaption class="portrait-caption">
+          <span class="p-name">Sai Charan</span>
+          <span class="p-role">AI · ML · NLP · Robotics</span>
+        </figcaption>
+
+        <span class="chip chip-a" aria-hidden="true"><i></i> ONLINE · INDIA</span>
+        <span class="chip chip-b" aria-hidden="true">夢 / YUME&nbsp;AI</span>
+      </div>
+
+      <span class="float-tag float-tag-a" aria-hidden="true">HUMAN–ROBOT<br />INTERACTION</span>
+      <span class="float-tag float-tag-b" aria-hidden="true">MEXT / KOSEN<br />PATHWAY</span>
+    </figure>
+  </div>
+
+  <div class="hero-foot">
+    <a class="scroll-cue" href="#researcher" aria-label="Scroll to the next section">
+      <span class="scroll-line"></span> SCROLL TO BEGIN
+    </a>
+    <p class="hero-coords">28.61° N · 77.21° E &nbsp;→&nbsp; 35.68° N · 139.69° E</p>
+  </div>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Artificial Intelligence <i>✦</i> Machine Learning <i>✦</i> Natural Language Processing <i>✦</i> Robotics <i>✦</i> Mechatronics <i>✦</i> Human–Robot Interaction <i>✦</i> India <i>✦</i> Japan <i>✦</i></span>
+      <span>Artificial Intelligence <i>✦</i> Machine Learning <i>✦</i> Natural Language Processing <i>✦</i> Robotics <i>✦</i> Mechatronics <i>✦</i> Human–Robot Interaction <i>✦</i> India <i>✦</i> Japan <i>✦</i></span>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     ACT II — THE RESEARCHER
+================================================================ -->
+<section class="section act act-two" id="researcher">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <span class="sec-index">ACT II · 02</span>
+      <h2 class="sec-title">The researcher<br /><span class="dim">behind the vision.</span></h2>
+      <p class="sec-sub">
+        Same face. Same story. A different angle — as the work begins to take shape.
+      </p>
+    </header>
+
+    <div class="researcher-grid">
+      <!-- Floating 3D profile card: second appearance -->
+      <div class="card-stage reveal" id="card-stage">
+        <div class="card-3d" id="card-3d">
+          <div class="card-sheen" aria-hidden="true"></div>
+
+          <div class="card-face">
+            <img src="assets/sai-charan-card.jpg" alt="Sai Charan — profile card portrait" width="1000" height="635" loading="lazy" decoding="async" />
+            <span class="card-edge" aria-hidden="true"></span>
+          </div>
+
+          <div class="card-layer card-top">
+            <span class="mono">PROFILE / 01</span>
+            <span class="dot-live"><i></i> ACTIVE</span>
+          </div>
+
+          <div class="card-layer card-bottom">
+            <div>
+              <strong>Sai Charan</strong>
+              <span>Student · Researcher in the making</span>
+            </div>
+            <span class="card-mark">夢</span>
+          </div>
+
+          <div class="card-layer card-chip card-chip-1">AI RESEARCH</div>
+          <div class="card-layer card-chip card-chip-2">INDIA → JAPAN</div>
+        </div>
+        <p class="card-hint"><span class="mono">MOVE YOUR POINTER</span> — the card responds in depth</p>
+      </div>
+
+      <div class="researcher-copy">
+        <p class="lead reveal">
+          I am <b>Sai Charan</b>, a student from India at the beginning of a long
+          research road — building the foundations in mathematics, programming and
+          language that serious AI and robotics work demands.
+        </p>
+        <p class="reveal" style="--d:.06s">
+          My direction is clear: <b>embodied, multilingual artificial intelligence</b> —
+          machines that do not only compute, but listen, understand context, and
+          behave safely around people. Japan, where robotics and human-centred
+          engineering meet, is where I want to study and contribute.
+        </p>
+        <p class="reveal muted" style="--d:.12s">
+          This site is a blueprint, not a trophy cabinet. Every research direction on it
+          is a plan I am working toward — not a finished result I am claiming.
+        </p>
+
+        <dl class="fact-grid reveal" style="--d:.16s">
+          <div><dt>Based in</dt><dd>India 🇮🇳</dd></div>
+          <div><dt>Education</dt><dd>Class 11 completed</dd></div>
+          <div><dt>Next step</dt><dd>Higher studies</dd></div>
+          <div><dt>Destination</dt><dd>Japan 🇯🇵</dd></div>
+        </dl>
+
+        <div class="lang-strip reveal" style="--d:.2s">
+          <span class="mono">FOUR LANGUAGES</span>
+          <ul>
+            <li>English</li><li>हिन्दी</li><li>తెలుగు</li><li class="jp">日本語</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     ACT III — THE PROFILE
+================================================================ -->
+<section class="section act act-three" id="profile">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <span class="sec-index">ACT III · 03</span>
+      <h2 class="sec-title">The full picture.<br /><span class="dim">The professional profile.</span></h2>
+      <p class="sec-sub">
+        Education, ambition, interests and the mission that connects them.
+      </p>
+    </header>
+
+    <div class="profile-grid">
+      <aside class="profile-aside reveal">
+        <div class="profile-photo">
+          <img src="assets/sai-charan-portrait.jpg" alt="Sai Charan" width="1600" height="1017" loading="lazy" decoding="async" />
+          <span class="profile-photo-ring" aria-hidden="true"></span>
+        </div>
+        <div class="profile-id">
+          <h3>Sai Charan</h3>
+          <p>Aspiring AI &amp; Robotics Researcher</p>
+          <span class="mono">INDIA · 日本を目指して</span>
+        </div>
+        <a class="btn btn-ghost btn-sm" href="#contact">Get in touch <span class="arrow">↗</span></a>
+      </aside>
+
+      <div class="profile-main">
+        <div class="block reveal">
+          <h3 class="block-title"><span class="mono">01</span> Education &amp; pathway</h3>
+          <ul class="edu-list">
+            <li>
+              <span class="edu-year">Now</span>
+              <div><b>Completed Class 11</b><p>Senior secondary schooling in India — building the academic base for engineering and research.</p></div>
+            </li>
+            <li>
+              <span class="edu-year">Next</span>
+              <div><b>Completing school education</b><p>Pursuing the next stage of schooling while preparing for higher studies and competitive applications.</p></div>
+            </li>
+            <li>
+              <span class="edu-year">Goal</span>
+              <div><b>Higher education in Japan</b><p>Targeting a Japanese pathway in engineering and applied AI — details subject to eligibility and selection.</p></div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="block reveal" style="--d:.06s">
+          <h3 class="block-title"><span class="mono">02</span> Research interests</h3>
+          <ul class="interest-grid">
+            <li>
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 6.6 10.4 11M7 17.4 10.4 13M13.6 11 17 6.6M13.6 13 17 17.4"/></svg>
+              <b>Artificial Intelligence</b><span>Learning systems that generalise beyond their training data.</span>
+            </li>
+            <li>
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 19h16M6 19V9M11 19V5M16 19v-7M21 19v-4"/></svg>
+              <b>Machine Learning</b><span>Models, evaluation, and the discipline of measuring what matters.</span>
+            </li>
+            <li>
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5Z"/><path d="M8 9h8M8 12h5"/></svg>
+              <b>Natural Language Processing</b><span>Language understanding across scripts, dialects and cultures.</span>
+            </li>
+            <li>
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 8V4M9 4h6"/><circle cx="9.5" cy="13" r="1.2"/><circle cx="14.5" cy="13" r="1.2"/><path d="M9 19v2M15 19v2"/></svg>
+              <b>Robotics</b><span>Intelligent machines that move, sense and act in real environments.</span>
+            </li>
+            <li>
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg>
+              <b>Mechatronics</b><span>The meeting point of mechanics, electronics and control.</span>
+            </li>
+            <li>
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 12h4l2-4 3 8 2-5 2 3h5"/><circle cx="12" cy="12" r="9" opacity=".35"/></svg>
+              <b>Human–Robot Interaction</b><span>Trust, safety, dignity and communication between people and machines.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="block reveal" style="--d:.1s">
+          <h3 class="block-title"><span class="mono">03</span> Career vision</h3>
+          <div class="vision-card">
+            <span class="vision-mark">夢</span>
+            <p>
+              To become an <b>AI and Robotics engineer</b> and contribute to advanced
+              technological research — work that connects intelligent software to the
+              physical world, and connects India and Japan through shared science.
+            </p>
+            <ul class="vision-tags">
+              <li>Research</li><li>Engineering</li><li>Human-centred AI</li><li>India × Japan</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     CHALLENGES
+================================================================ -->
+<section class="section" id="challenges">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <span class="sec-index">04 · THE PROBLEM SPACE</span>
+      <h2 class="sec-title">Two countries.<br /><span class="dim">Shared problems.</span></h2>
+      <p class="sec-sub">
+        India and Japan differ in language, scale and culture — yet face overlapping
+        human challenges where intelligent machines could genuinely help.
+      </p>
+    </header>
+
+    <div class="challenge-grid">
+      <article class="challenge reveal">
+        <span class="challenge-no mono">01</span>
+        <h3>Language &amp; knowledge barriers</h3>
+        <p>Research, services and opportunity are locked behind languages. Japanese technical knowledge rarely reaches Indian students — and Indian context rarely reaches Japanese labs.</p>
+        <div class="challenge-tags"><span>🇮🇳 India</span><span>🇯🇵 Japan</span></div>
+      </article>
+
+      <article class="challenge reveal" style="--d:.05s">
+        <span class="challenge-no mono">02</span>
+        <h3>An ageing society</h3>
+        <p>Japan's population is shrinking and ageing; care work is strained. Assistive and companion robotics must be safe, patient and genuinely understood by the people using them.</p>
+        <div class="challenge-tags"><span>🇯🇵 Japan</span><span>Care</span></div>
+      </article>
+
+      <article class="challenge reveal" style="--d:.1s">
+        <span class="challenge-no mono">03</span>
+        <h3>Disaster resilience</h3>
+        <p>Both nations live with earthquakes, floods and cyclones. Response robots need to operate in chaos, communicate across languages, and support responders without getting in the way.</p>
+        <div class="challenge-tags"><span>🇮🇳 India</span><span>🇯🇵 Japan</span></div>
+      </article>
+
+      <article class="challenge reveal" style="--d:.15s">
+        <span class="challenge-no mono">04</span>
+        <h3>Agriculture under pressure</h3>
+        <p>Small farms and ageing farmers on both sides need precision tools that are affordable, repairable and usable by people who are not engineers.</p>
+        <div class="challenge-tags"><span>🇮🇳 India</span><span>Field robotics</span></div>
+      </article>
+
+      <article class="challenge reveal" style="--d:.2s">
+        <span class="challenge-no mono">05</span>
+        <h3>Manufacturing &amp; skill transfer</h3>
+        <p>Japan's craftsmanship and India's young workforce are complementary. The gap is not talent — it is language, training and accessible human–machine interfaces.</p>
+        <div class="challenge-tags"><span>🇮🇳 India</span><span>🇯🇵 Japan</span></div>
+      </article>
+
+      <article class="challenge reveal" style="--d:.25s">
+        <span class="challenge-no mono">06</span>
+        <h3>Education access</h3>
+        <p>A patient tutor in every language, available at any hour, is still a dream for most students. Multilingual AI tutoring could change the scale of what one teacher reaches.</p>
+        <div class="challenge-tags"><span>🇮🇳 India</span><span>AI for all</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     YUME AI — MISSION
+================================================================ -->
+<section class="section yume" id="yume">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <span class="sec-index">05 · THE MISSION</span>
+      <h2 class="sec-title">YUME AI</h2>
+      <p class="sec-sub">夢 — dream. A research direction for machines that understand people, not just commands.</p>
+    </header>
+
+    <div class="yume-top">
+      <div class="yume-statement reveal">
+        <p class="giant-quote">
+          “A robot that understands a human must first understand
+          <span class="grad">their language, their context, and their limits.</span>”
+        </p>
+        <p class="yume-desc">
+          YUME AI is my proposed research platform: a multilingual, embodied AI system
+          built around four pillars — <b>Listen</b>, <b>Understand</b>, <b>Act</b> and <b>Care</b>.
+          Each pillar pairs a technical problem with a human one.
+        </p>
+      </div>
+
+      <div class="lang-orbit reveal" style="--d:.08s" aria-hidden="true">
+        <span class="orbit-ring"></span>
+        <span class="orbit-ring orbit-ring-2"></span>
+        <span class="orbit-core">夢</span>
+        <span class="lang-chip lc-1">EN</span>
+        <span class="lang-chip lc-2">हिं</span>
+        <span class="lang-chip lc-3">తె</span>
+        <span class="lang-chip lc-4">日</span>
+      </div>
+    </div>
+
+    <div class="pillar-grid">
+      <article class="pillar reveal">
+        <div class="pillar-head"><span class="pillar-icon">◉</span><span class="mono">PILLAR 01</span></div>
+        <h3>Listen</h3>
+        <p>Robust speech recognition and language identification across Japanese, English, Hindi and Telugu — including noisy rooms, code-switching and low-resource speech.</p>
+        <ul class="pillar-list"><li>Multilingual ASR</li><li>Code-switch handling</li><li>Low-resource data</li></ul>
+      </article>
+
+      <article class="pillar reveal" style="--d:.05s">
+        <div class="pillar-head"><span class="pillar-icon">◎</span><span class="mono">PILLAR 02</span></div>
+        <h3>Understand</h3>
+        <p>Grounding language in cultural context and real-world state, so intent is inferred rather than guessed — and decisions can be explained to a person.</p>
+        <ul class="pillar-list"><li>Context grounding</li><li>Explainability</li><li>Safety constraints</li></ul>
+      </article>
+
+      <article class="pillar reveal" style="--d:.1s">
+        <div class="pillar-head"><span class="pillar-icon">◈</span><span class="mono">PILLAR 03</span></div>
+        <h3>Act</h3>
+        <p>Translating understanding into safe physical behaviour — manipulation, mobility and assistive tasks on robotic platforms, simulated before deployed.</p>
+        <ul class="pillar-list"><li>ROS-based control</li><li>Sim-to-real</li><li>Task planning</li></ul>
+      </article>
+
+      <article class="pillar reveal" style="--d:.15s">
+        <div class="pillar-head"><span class="pillar-icon">◇</span><span class="mono">PILLAR 04</span></div>
+        <h3>Care</h3>
+        <p>Human–robot interaction as a first-class engineering discipline: trust calibration, dignity, accessibility and the ethics of machines in private life.</p>
+        <ul class="pillar-list"><li>Trust &amp; transparency</li><li>Accessibility</li><li>Ethics by design</li></ul>
+      </article>
+    </div>
+
+    <div class="propose-grid">
+      <article class="propose reveal">
+        <span class="status">PROPOSED</span>
+        <h3>YUME Tutor</h3>
+        <p>A patient multilingual study companion that explains concepts in the student's strongest language and adapts pace to the learner.</p>
+        <span class="propose-tag">Education access</span>
+      </article>
+      <article class="propose reveal" style="--d:.05s">
+        <span class="status">PROPOSED</span>
+        <h3>YUME Companion</h3>
+        <p>An assistive home robot concept focused on conversation, reminders and safe monitoring for elderly users — with privacy at the centre.</p>
+        <span class="propose-tag">Ageing society</span>
+      </article>
+      <article class="propose reveal" style="--d:.1s">
+        <span class="status">PROPOSED</span>
+        <h3>YUME Bridge</h3>
+        <p>Real-time speech and document translation tuned for engineering and research vocabulary between Japanese and Indian languages.</p>
+        <span class="propose-tag">Knowledge barriers</span>
+      </article>
+    </div>
+
+    <aside class="honesty reveal">
+      <div><span class="mono">WHAT THIS IS</span><p>A research roadmap, a set of engineering questions, and a direction of study.</p></div>
+      <div><span class="mono">WHAT THIS IS NOT</span><p>A finished product, a published result, or a claim of achievement. Nothing here has been deployed yet.</p></div>
+    </aside>
+  </div>
+</section>
+
+<!-- ================================================================
+     ARCHITECTURE
+================================================================ -->
+<section class="section" id="architecture">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <span class="sec-index">06 · SYSTEM DESIGN</span>
+      <h2 class="sec-title">A living architecture.<br /><span class="dim">Explore it.</span></h2>
+      <p class="sec-sub">
+        Six subsystems, one loop. Drag to rotate the system, and select any node to read
+        what it is meant to do.
+      </p>
+    </header>
+
+    <div class="arch-shell reveal">
+      <div class="arch" id="arch-stage">
+        <canvas id="arch-canvas" aria-label="Interactive 3D diagram of the YUME AI system architecture"></canvas>
+
+        <div class="arch-overlay" id="arch-overlay">
+          <button class="arch-node" type="button" data-node="0"><span>Perception</span></button>
+          <button class="arch-node" type="button" data-node="1"><span>Multilingual Core</span></button>
+          <button class="arch-node" type="button" data-node="2"><span>Reasoning &amp; Planning</span></button>
+          <button class="arch-node" type="button" data-node="3"><span>Embodied Action</span></button>
+          <button class="arch-node" type="button" data-node="4"><span>Human–Robot Interaction</span></button>
+          <button class="arch-node" type="button" data-node="5"><span>Continuous Learning</span></button>
+          <span class="arch-core-label" aria-hidden="true">YUME<br />CORE</span>
+        </div>
+
+        <div class="arch-hud">
+          <span class="mono">FIG. 01 — SYSTEM LOOP</span>
+          <span class="arch-hint" id="arch-hint">DRAG TO ROTATE</span>
+        </div>
+
+        <div class="arch-fallback" aria-hidden="true">
+          <p>3D view unavailable — select a subsystem in the panel.</p>
+        </div>
+      </div>
+
+      <aside class="arch-panel" id="arch-panel" aria-live="polite">
+        <div class="arch-panel-body">
+          <span class="mono" id="arch-panel-index">NODE 01</span>
+          <h3 id="arch-panel-title">Perception</h3>
+          <p id="arch-panel-desc">Cameras, microphones and sensors turn the physical world into structured signals.</p>
+          <ul class="arch-tags" id="arch-panel-tags"></ul>
+          <span class="arch-status">PROPOSED SUBSYSTEM</span>
+        </div>
+        <div class="arch-panel-foot">
+          <span class="mono">01 — 06 · SELECT A NODE</span>
+          <div class="arch-nav" id="arch-nav" role="group" aria-label="Select subsystem"></div>
+        </div>
+      </aside>
+    </div>
+
+    <p class="arch-note reveal">
+      <span class="mono">NOTE</span> The architecture is a design proposal for future study, not an implemented system.
+    </p>
+  </div>
+</section>
+
+<!-- ================================================================
+     JOURNEY
+================================================================ -->
+<section class="section" id="journey">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <span class="sec-index">07 · TIMELINE</span>
+      <h2 class="sec-title">From foundations<br /><span class="dim">to research.</span></h2>
+      <p class="sec-sub">
+        A staged plan — deliberately honest about what is done, what is next, and what is
+        only intended.
+      </p>
+    </header>
+
+    <ol class="timeline">
+      <li class="timeline-item reveal">
+        <div class="timeline-marker"><span>01</span></div>
+        <div class="timeline-body">
+          <div class="timeline-meta"><span class="mono">2026 · FOUNDATIONS</span><span class="pill pill-now">IN PROGRESS</span></div>
+          <h3>Build the base</h3>
+          <p>Mathematics for machine learning, Python and data structures, first ML courses — alongside foundational Japanese and a disciplined study routine.</p>
+          <ul class="timeline-list"><li>Mathematics</li><li>Python</li><li>JLPT foundations</li></ul>
+        </div>
+      </li>
+
+      <li class="timeline-item reveal" style="--d:.05s">
+        <div class="timeline-marker"><span>02</span></div>
+        <div class="timeline-body">
+          <div class="timeline-meta"><span class="mono">2027 · SPECIALISATION</span><span class="pill">PLANNED</span></div>
+          <h3>Go deeper, build small</h3>
+          <p>NLP and computer vision projects, an introduction to ROS and mechatronics, and a first small prototype of one YUME AI pillar.</p>
+          <ul class="timeline-list"><li>NLP</li><li>Computer vision</li><li>ROS basics</li><li>Prototype v0</li></ul>
+        </div>
+      </li>
+
+      <li class="timeline-item reveal" style="--d:.1s">
+        <div class="timeline-marker"><span>03</span></div>
+        <div class="timeline-body">
+          <div class="timeline-meta"><span class="mono">2028 · APPLICATION</span><span class="pill">PLANNED</span></div>
+          <h3>Apply to Japan</h3>
+          <p>Complete school education, prepare language and entrance requirements, and apply through the appropriate KOSEN / MEXT route as eligibility allows.</p>
+          <ul class="timeline-list"><li>School completion</li><li>Language exams</li><li>Scholarship application</li></ul>
+        </div>
+      </li>
+
+      <li class="timeline-item reveal" style="--d:.15s">
+        <div class="timeline-marker"><span>04</span></div>
+        <div class="timeline-body">
+          <div class="timeline-meta"><span class="mono">2029+ · RESEARCH</span><span class="pill">VISION</span></div>
+          <h3>Study, research, contribute</h3>
+          <p>Undergraduate study in Japan, joining a laboratory working on multilingual NLP, embodied AI or human–robot interaction — and contributing real work.</p>
+          <ul class="timeline-list"><li>Undergraduate research</li><li>Lab work</li><li>Publication</li></ul>
+        </div>
+      </li>
+    </ol>
+
+    <p class="arch-note reveal"><span class="mono">NOTE</span> Dates are intentions, not commitments. Scholarship routes depend on eligibility, examinations and selection.</p>
+  </div>
+</section>
+
+<!-- ================================================================
+     JAPAN
+================================================================ -->
+<section class="section japan" id="japan">
+  <div class="wrap">
+    <div class="japan-grid">
+      <div class="japan-copy">
+        <span class="sec-index reveal">08 · THE DESTINATION</span>
+        <h2 class="sec-title reveal">Why Japan.<br /><span class="dim">Why now.</span></h2>
+        <p class="lead reveal">
+          Japan is where robotics leaves the laboratory and enters daily life —
+          in care homes, factories, farms and disaster response.
+        </p>
+        <p class="reveal">
+          For someone who wants to build machines that understand humans, that is the
+          most honest classroom in the world. Japan's research culture also rewards
+          patience, precision and long-term thinking — qualities I want to learn.
+        </p>
+        <p class="reveal muted">
+          The route I am aiming at is the <b>MEXT scholarship</b> and the
+          <b>College of Technology (KOSEN)</b> pathway, subject to eligibility and
+          selection. This page does not claim admission, selection or any award.
+        </p>
+
+        <div class="lang-goal reveal">
+          <div><span class="mono">LANGUAGE GOAL</span><b>Japanese</b></div>
+          <p>Foundational study first — reading, listening and technical vocabulary for research life.</p>
+        </div>
+      </div>
+
+      <div class="route-card reveal" style="--d:.08s">
+        <span class="mono route-label">PROPOSED ROUTE</span>
+        <ol class="route">
+          <li><span class="route-dot"></span><div><b>India</b><span>School education · foundations</span></div></li>
+          <li><span class="route-dot"></span><div><b>Japanese language</b><span>JLPT preparation · technical Japanese</span></div></li>
+          <li><span class="route-dot"></span><div><b>KOSEN / MEXT</b><span>Eligibility, exams and selection</span></div></li>
+          <li><span class="route-dot"></span><div><b>Undergraduate research</b><span>AI · robotics · HRI laboratory</span></div></li>
+          <li><span class="route-dot"></span><div><b>AI &amp; Robotics engineer</b><span>Research that connects two countries</span></div></li>
+        </ol>
+        <div class="route-foot">
+          <span class="flag">🇮🇳</span><span class="route-line"></span><span class="flag">🇯🇵</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     FOUNDER
+================================================================ -->
+<section class="section founder" id="founder">
+  <div class="wrap">
+    <div class="founder-grid">
+
+      <figure class="founder-photo reveal">
+        <img src="assets/sai-charan-founder.jpg" alt="Sai Charan, founder of YUME AI" width="632" height="580" loading="lazy" decoding="async" />
+        <span class="founder-vignette" aria-hidden="true"></span>
+        <span class="founder-sheen" aria-hidden="true"></span>
+
+        <span class="hud hud-tl" aria-hidden="true"></span>
+        <span class="hud hud-tr" aria-hidden="true"></span>
+        <span class="hud hud-bl" aria-hidden="true"></span>
+        <span class="hud hud-br" aria-hidden="true"></span>
+
+        <span class="founder-chip" aria-hidden="true"><i></i> FOUNDER · YUME AI</span>
+
+        <figcaption class="founder-caption">
+          <span class="p-name">Sai Charan</span>
+          <span class="p-role">Founder · India × Japan</span>
+        </figcaption>
+        <span class="founder-mark" aria-hidden="true">夢</span>
+      </figure>
+
+      <div class="founder-copy">
+        <span class="sec-index reveal">09 · THE FOUNDER</span>
+        <h2 class="sec-title reveal">The face behind<br /><span class="dim">the vision.</span></h2>
+
+        <p class="lead reveal" style="--d:.06s">
+          I am <b>Sai Charan</b> — a student from India and the person behind YUME AI.
+          Everything here is my own direction of study, written honestly.
+        </p>
+        <p class="reveal" style="--d:.1s">
+          This is not a company announcement. YUME AI is a research vision I am building
+          in public: a set of engineering questions about multilingual, embodied
+          intelligence — and a promise to do the work before making the claim.
+        </p>
+
+        <div class="founder-links reveal" style="--d:.14s">
+          <a class="founder-link" href="mailto:ksaicharan961@gmail.com">
+            <svg class="fl-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="3" /><path d="m4 7 8 6 8-6" />
+            </svg>
+            <span class="fl-text"><span>Gmail</span><b>ksaicharan961@gmail.com</b></span>
+          </a>
+
+          <a class="founder-link fl-wa" href="https://wa.me/918977330221?text=Hi%20Sai%20Charan%2C%20I%20found%20YUME%20AI." target="_blank" rel="noopener">
+            <svg class="fl-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+              <path d="M20.5 11.6a8.4 8.4 0 0 1-12.4 7.4L4 20l1.1-4a8.4 8.4 0 1 1 15.4-4.4Z" />
+              <path d="M9.2 8.7c.2.9.6 1.7 1.2 2.4.6.7 1.4 1.3 2.3 1.7l.9-.8 1.5.7-.3 1.4c-1.6.5-3.5-.2-5-1.6-1.4-1.4-2.2-3.2-1.8-4.8l1.4-.2.8 1.2Z" />
+            </svg>
+            <span class="fl-text"><span>WhatsApp</span><b>+91 89773 30221</b></span>
+          </a>
+        </div>
+
+        <p class="founder-note reveal" style="--d:.18s">
+          <span class="mono">OPEN TO</span> conversations about AI, robotics and studying in Japan.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     CONTACT
+================================================================ -->
+<section class="section contact" id="contact">
+  <div class="wrap">
+    <div class="contact-inner reveal">
+      <span class="sec-index">10 · CONTACT</span>
+      <h2 class="contact-title">Let's build<br /><span class="grad">something intelligent.</span></h2>
+      <p class="contact-sub">
+        Open to conversations about AI, robotics, study in Japan, and collaboration
+        with people who care about building technology with a human centre.
+      </p>
+      <div class="contact-actions">
+        <a class="btn btn-primary btn-lg" href="mailto:ksaicharan961@gmail.com">ksaicharan961@gmail.com <span class="arrow">↗</span></a>
+        <a class="btn btn-ghost btn-lg btn-wa" href="https://wa.me/918977330221?text=Hi%20Sai%20Charan%2C%20I%20found%20YUME%20AI." target="_blank" rel="noopener">
+          <svg class="wa-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M20.5 11.6a8.4 8.4 0 0 1-12.4 7.4L4 20l1.1-4a8.4 8.4 0 1 1 15.4-4.4Z" />
+            <path d="M9.2 8.7c.2.9.6 1.7 1.2 2.4.6.7 1.4 1.3 2.3 1.7l.9-.8 1.5.7-.3 1.4c-1.6.5-3.5-.2-5-1.6-1.4-1.4-2.2-3.2-1.8-4.8l1.4-.2.8 1.2Z" />
+          </svg>
+          WhatsApp · +91 89773 30221 <span class="arrow">↗</span>
+        </a>
+      </div>
+      <ul class="socials" aria-label="Direct contact">
+        <li><a href="mailto:ksaicharan961@gmail.com" aria-label="Email Sai Charan">Gmail</a></li>
+        <li><a href="https://wa.me/918977330221" target="_blank" rel="noopener" aria-label="Message Sai Charan on WhatsApp">WhatsApp</a></li>
+        <li><a href="tel:+918977330221" aria-label="Call Sai Charan">+91 89773 30221</a></li>
+      </ul>
+      <p class="contact-note">India 🇮🇳 × Japan 🇯🇵 — よろしくお願いします</p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="footer-mark">夢<span>AI</span></span>
+      <p>© <span id="year">2026</span> Sai Charan · YUME AI. A student portfolio — research directions are proposed, not completed.</p>
+      <p class="footer-contact">
+        <a href="mailto:ksaicharan961@gmail.com">ksaicharan961@gmail.com</a>
+        <span aria-hidden="true">·</span>
+        <a href="https://wa.me/918977330221" target="_blank" rel="noopener">+91 89773 30221</a>
+      </p>
+      <a href="#top" class="back-top">Back to top ↑</a>
+    </div>
+  </footer>
+</section>
+
+</main>
+
+<!-- Floating WhatsApp -->
+<a class="wa-fab" href="https://wa.me/918977330221?text=Hi%20Sai%20Charan%2C%20I%20found%20YUME%20AI." target="_blank" rel="noopener" aria-label="Chat with Sai Charan on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+    <path d="M20.5 11.6a8.4 8.4 0 0 1-12.4 7.4L4 20l1.1-4a8.4 8.4 0 1 1 15.4-4.4Z" />
+    <path d="M9.2 8.7c.2.9.6 1.7 1.2 2.4.6.7 1.4 1.3 2.3 1.7l.9-.8 1.5.7-.3 1.4c-1.6.5-3.5-.2-5-1.6-1.4-1.4-2.2-3.2-1.8-4.8l1.4-.2.8 1.2Z" />
+  </svg>
+  <span class="wa-fab-tip">WhatsApp</span>
+</a>
+
+<script type="module">
+/* =====================================================================
+   YUME AI — interaction layer
+   ===================================================================== */
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const finePointer  = window.matchMedia('(pointer: fine)').matches;
+
+/* ---------- Loader ---------- */
+const loader = document.getElementById('loader');
+function hideLoader() {
+  if (!loader || loader.classList.contains('done')) return;
+  loader.classList.add('done');
+  setTimeout(() => loader.remove(), 900);
+}
+window.addEventListener('load', () => setTimeout(hideLoader, 450));
+setTimeout(hideLoader, 4200);
+
+/* ---------- Year ---------- */
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+/* ---------- Nav ---------- */
+const nav = document.getElementById('nav');
+const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('nav-links');
+
+navToggle?.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', String(open));
+  navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+});
+
+navLinks?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  navLinks.classList.remove('open');
+  navToggle.setAttribute('aria-expanded', 'false');
+}));
+
+/* ---------- Scroll progress + nav state ---------- */
+const progress = document.getElementById('progress');
+let scrollQueued = false;
+
+function onScrollFrame() {
+  scrollQueued = false;
+  const doc = document.documentElement;
+  const max = doc.scrollHeight - window.innerHeight;
+  const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+  if (progress) progress.style.transform = `scaleX(${p})`;
+  if (nav) nav.classList.toggle('scrolled', window.scrollY > 24);
+  updateCard();
+  updateHeroParallax();
+}
+
+window.addEventListener('scroll', () => {
+  if (!scrollQueued) { scrollQueued = true; requestAnimationFrame(onScrollFrame); }
+}, { passive: true });
+
+/* ---------- Reveals ---------- */
+const revealEls = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window && !reduceMotion) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+  revealEls.forEach(el => io.observe(el));
+} else {
+  revealEls.forEach(el => el.classList.add('in'));
+}
+
+/* ---------- Active nav link ---------- */
+const sections = [...document.querySelectorAll('main section[id]')];
+const navMap = new Map([...document.querySelectorAll('#nav-links a')].map(a => [a.getAttribute('href').slice(1), a]));
+if ('IntersectionObserver' in window) {
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      const link = navMap.get(e.target.id);
+      if (!link) return;
+      if (e.isIntersecting) {
+        navMap.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(s => spy.observe(s));
+}
+
+/* ---------- Pointer glow ---------- */
+const glow = document.getElementById('cursor-glow');
+if (glow && finePointer && !reduceMotion) {
+  let gx = innerWidth / 2, gy = innerHeight / 2, cx = gx, cy = gy;
+  window.addEventListener('pointermove', (e) => { gx = e.clientX; gy = e.clientY; glow.classList.add('on'); }, { passive: true });
+  (function glowLoop() {
+    cx += (gx - cx) * 0.12; cy += (gy - cy) * 0.12;
+    glow.style.transform = `translate3d(${cx}px, ${cy}px, 0) translate(-50%, -50%)`;
+    requestAnimationFrame(glowLoop);
+  })();
+}
+
+/* ---------- Hero parallax ---------- */
+const heroPortrait = document.getElementById('hero-portrait');
+let px = 0, py = 0, tpx = 0, tpy = 0;
+
+if (finePointer && !reduceMotion) {
+  window.addEventListener('pointermove', (e) => {
+    tpx = (e.clientX / innerWidth - 0.5);
+    tpy = (e.clientY / innerHeight - 0.5);
+  }, { passive: true });
+  (function parallaxLoop() {
+    px += (tpx - px) * 0.06; py += (tpy - py) * 0.06;
+    if (heroPortrait) {
+      heroPortrait.style.setProperty('--mx', px.toFixed(4));
+      heroPortrait.style.setProperty('--my', py.toFixed(4));
+    }
+    requestAnimationFrame(parallaxLoop);
+  })();
+}
+
+function updateHeroParallax() {
+  if (!heroPortrait || reduceMotion) return;
+  const y = window.scrollY;
+  const max = window.innerHeight * 0.9;
+  const k = Math.min(1, y / max);
+  heroPortrait.style.setProperty('--sy', k.toFixed(4));
+}
+
+/* ---------- 3D profile card (second appearance) ---------- */
+const cardStage = document.getElementById('card-stage');
+const card = document.getElementById('card-3d');
+let rotX = 0, rotY = 0, targetX = 0, targetY = 0, scrollRot = 0;
+
+if (card && cardStage) {
+  if (finePointer && !reduceMotion) {
+    cardStage.addEventListener('pointermove', (e) => {
+      const r = cardStage.getBoundingClientRect();
+      const nx = (e.clientX - r.left) / r.width - 0.5;
+      const ny = (e.clientY - r.top) / r.height - 0.5;
+      targetY = nx * 22;
+      targetX = -ny * 16;
+    });
+    cardStage.addEventListener('pointerleave', () => { targetX = 0; targetY = 0; });
+  }
+  (function cardLoop() {
+    rotX += (targetX - rotX) * 0.08;
+    rotY += (targetY - rotY) * 0.08;
+    card.style.transform = `rotateX(${(rotX).toFixed(2)}deg) rotateY(${(rotY + scrollRot).toFixed(2)}deg)`;
+    requestAnimationFrame(cardLoop);
+  })();
+}
+
+function updateCard() {
+  if (!cardStage || reduceMotion) return;
+  const r = cardStage.getBoundingClientRect();
+  const center = r.top + r.height / 2 - innerHeight / 2;
+  scrollRot = Math.max(-8, Math.min(8, -center / innerHeight * 10));
+}
+
+updateHeroParallax();
+onScrollFrame();
+
+/* =====================================================================
+   Background star field
+   ===================================================================== */
+async function initBackground() {
+  const canvas = document.getElementById('bg-canvas');
+  if (!canvas || reduceMotion) return;
+  let THREE;
+  try { THREE = await import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js'); }
+  catch (e) { return; }
+
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false, powerPreference: 'low-power' });
+  renderer.setPixelRatio(Math.min(2, devicePixelRatio || 1));
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(55, 1, 1, 120);
+  camera.position.z = 30;
+
+  const COUNT = window.innerWidth < 760 ? 380 : 820;
+  const geo = new THREE.BufferGeometry();
+  const pos = new Float32Array(COUNT * 3);
+  const col = new Float32Array(COUNT * 3);
+  const palette = [new THREE.Color('#7dd3fc'), new THREE.Color('#3b82f6'), new THREE.Color('#a78bfa'), new THREE.Color('#ffffff')];
+
+  for (let i = 0; i < COUNT; i++) {
+    pos[i * 3]     = (Math.random() - 0.5) * 90;
+    pos[i * 3 + 1] = (Math.random() - 0.5) * 60;
+    pos[i * 3 + 2] = (Math.random() - 0.5) * 60;
+    const c = palette[(Math.random() * palette.length) | 0];
+    col[i * 3] = c.r; col[i * 3 + 1] = c.g; col[i * 3 + 2] = c.b;
+  }
+  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
+
+  const dot = document.createElement('canvas');
+  dot.width = dot.height = 64;
+  const ctx = dot.getContext('2d');
+  const g = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+  g.addColorStop(0, 'rgba(255,255,255,1)');
+  g.addColorStop(0.25, 'rgba(255,255,255,.85)');
+  g.addColorStop(1, 'rgba(255,255,255,0)');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, 64, 64);
+
+  const mat = new THREE.PointsMaterial({
+    size: 0.55, map: new THREE.CanvasTexture(dot), transparent: true,
+    opacity: 0.75, depthWrite: false, blending: THREE.AdditiveBlending, vertexColors: true, sizeAttenuation: true
+  });
+  const points = new THREE.Points(geo, mat);
+  scene.add(points);
+
+  let mX = 0, mY = 0, curX = 0, curY = 0;
+  window.addEventListener('pointermove', (e) => {
+    mX = (e.clientX / innerWidth - 0.5);
+    mY = (e.clientY / innerHeight - 0.5);
+  }, { passive: true });
+
+  const resize = () => {
+    renderer.setSize(innerWidth, innerHeight, false);
+    camera.aspect = innerWidth / innerHeight;
+    camera.updateProjectionMatrix();
+  };
+  addEventListener('resize', resize);
+  resize();
+
+  let running = true;
+  document.addEventListener('visibilitychange', () => { running = !document.hidden; if (running) frame(); });
+  const clock = new THREE.Clock();
+
+  function frame() {
+    if (!running) return;
+    const t = clock.getElapsedTime();
+    curX += (mX - curX) * 0.03;
+    curY += (mY - curY) * 0.03;
+    points.rotation.y = t * 0.012 + curX * 0.25;
+    points.rotation.x = curY * 0.18;
+    points.position.y = Math.sin(t * 0.08) * 0.4;
+    renderer.render(scene, camera);
+    requestAnimationFrame(frame);
+  }
+  frame();
+}
+
+/* =====================================================================
+   Architecture — interactive 3D system graph
+   ===================================================================== */
+const NODES = [
+  { label: 'Perception', jp: '知覚', desc: 'Cameras, microphones and sensors turn the physical world into structured signals.', tags: ['Computer vision', 'Audio', 'Sensor fusion'] },
+  { label: 'Multilingual Core', jp: '言語', desc: 'Speech recognition and language understanding across Japanese, English, Hindi and Telugu — including low-resource settings.', tags: ['ASR', 'NLP', 'Translation'] },
+  { label: 'Reasoning & Planning', jp: '推論', desc: 'Grounds language in context and culture, plans actions, and can explain its decisions to a person.', tags: ['LLM', 'Task planning', 'Explainability'] },
+  { label: 'Embodied Action', jp: '行動', desc: 'Maps intent to safe motion on robotic platforms — manipulation, mobility and assistive tasks.', tags: ['ROS', 'Control', 'Mechatronics'] },
+  { label: 'Human–Robot Interaction', jp: '共生', desc: 'Studies how people trust, understand and collaborate with embodied AI, with dignity at the centre.', tags: ['HRI', 'Ethics', 'Accessibility'] },
+  { label: 'Continuous Learning', jp: '学習', desc: 'Feedback from every interaction returns to the model, closing the loop between research and the real world.', tags: ['MLOps', 'Evaluation', 'Adaptation'] }
+];
+
+async function initArchitecture() {
+  const stage = document.getElementById('arch-stage');
+  const canvas = document.getElementById('arch-canvas');
+  const overlay = document.getElementById('arch-overlay');
+  const panel = document.getElementById('arch-panel');
+  if (!stage || !canvas) return;
+
+  const buttons = [...document.querySelectorAll('.arch-node')];
+  const navWrap = document.getElementById('arch-nav');
+  const dots = NODES.map((n, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'arch-dot';
+    b.setAttribute('aria-label', `Show ${n.label}`);
+    b.addEventListener('click', () => select(i));
+    navWrap?.append(b);
+    return b;
+  });
+  const panelIndex = document.getElementById('arch-panel-index');
+  const panelTitle = document.getElementById('arch-panel-title');
+  const panelDesc = document.getElementById('arch-panel-desc');
+  const panelTags = document.getElementById('arch-panel-tags');
+  let selected = 0;
+
+  function select(i, silent) {
+    selected = i;
+    const d = NODES[i];
+    buttons.forEach((b, bi) => b.classList.toggle('active', bi === i));
+    dots.forEach((b, bi) => b.classList.toggle('active', bi === i));
+    if (panel) {
+      panel.classList.add('swap');
+      setTimeout(() => {
+        panelIndex.textContent = `NODE 0${i + 1}`;
+        panelTitle.textContent = d.label;
+        panelDesc.textContent = d.desc;
+        panelTags.innerHTML = d.tags.map(t => `<li>${t}</li>`).join('');
+        panel.classList.remove('swap');
+      }, silent ? 0 : 150);
+    }
+  }
+  buttons.forEach((b, i) => {
+    b.addEventListener('click', () => select(i));
+    b.addEventListener('mouseenter', () => { if (finePointer) b.classList.add('hover'); });
+    b.addEventListener('mouseleave', () => b.classList.remove('hover'));
+  });
+  select(0, true);
+
+  let THREE;
+  try {
+    THREE = await import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js');
+  } catch (e) {
+    stage.classList.add('no-3d');
+    return;
+  }
+
+  let renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'high-performance' });
+  } catch (e) {
+    stage.classList.add('no-3d');
+    return;
+  }
+
+  renderer.setPixelRatio(Math.min(2, devicePixelRatio || 1));
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
+  camera.position.set(0, 1.1, 8.2);
+  camera.lookAt(0, 0, 0);
+
+  const group = new THREE.Group();
+  scene.add(group);
+
+  const colorMain = new THREE.Color('#48e0ff');
+  const colorBlue = new THREE.Color('#2f6bff');
+  const colorViolet = new THREE.Color('#8b5cf6');
+
+  // ---- nodes on a ring
+  const meshes = [];
+  const labels = [];
+  const R = 2.45;
+  NODES.forEach((n, i) => {
+    const a = (i / NODES.length) * Math.PI * 2 - Math.PI / 2;
+    const y = Math.sin(a * 2) * 0.55;
+    const p = new THREE.Vector3(Math.cos(a) * R, y, Math.sin(a) * R);
+
+    const sphere = new THREE.Mesh(
+      new THREE.SphereGeometry(0.085, 24, 24),
+      new THREE.MeshBasicMaterial({ color: colorMain })
+    );
+    sphere.position.copy(p);
+    group.add(sphere);
+
+    const halo = new THREE.Mesh(
+      new THREE.SphereGeometry(0.2, 20, 20),
+      new THREE.MeshBasicMaterial({ color: colorMain, transparent: true, opacity: 0.12, blending: THREE.AdditiveBlending, depthWrite: false })
+    );
+    halo.position.copy(p);
+    group.add(halo);
+
+    const ring = new THREE.Mesh(
+      new THREE.TorusGeometry(0.3, 0.006, 8, 64),
+      new THREE.MeshBasicMaterial({ color: colorBlue, transparent: true, opacity: 0.5, blending: THREE.AdditiveBlending, depthWrite: false })
+    );
+    ring.position.copy(p);
+    ring.lookAt(0, 0, 0);
+    group.add(ring);
+
+    meshes.push({ sphere, halo, ring, base: p.clone(), phase: Math.random() * Math.PI * 2 });
+  });
+
+  // ---- links (curved)
+  const linkPairs = [];
+  for (let i = 0; i < NODES.length; i++) linkPairs.push([i, (i + 1) % NODES.length, 0.55]);
+  linkPairs.push([0, 3, 0.9], [1, 4, 0.9], [2, 5, 0.9]);
+
+  const links = [];
+  linkPairs.forEach(([a, b, lift]) => {
+    const pa = meshes[a].base, pb = meshes[b].base;
+    const mid = pa.clone().add(pb).multiplyScalar(0.5).multiplyScalar(1.25 + lift * 0.1);
+    const curve = new THREE.QuadraticBezierCurve3(pa, mid, pb);
+    const pts = curve.getPoints(44);
+    const geo = new THREE.BufferGeometry().setFromPoints(pts);
+    const mat = new THREE.LineBasicMaterial({ color: colorBlue, transparent: true, opacity: 0.32, blending: THREE.AdditiveBlending, depthWrite: false });
+    const line = new THREE.Line(geo, mat);
+    group.add(line);
+    links.push({ line, a, b, mat });
+  });
+
+  // ---- core
+  const core = new THREE.Mesh(
+    new THREE.IcosahedronGeometry(0.72, 1),
+    new THREE.MeshBasicMaterial({ color: colorMain, wireframe: true, transparent: true, opacity: 0.42 })
+  );
+  group.add(core);
+  const coreInner = new THREE.Mesh(
+    new THREE.IcosahedronGeometry(0.42, 0),
+    new THREE.MeshBasicMaterial({ color: colorViolet, wireframe: true, transparent: true, opacity: 0.5 })
+  );
+  group.add(coreInner);
+
+  const starGeo = new THREE.BufferGeometry();
+  const starPos = new Float32Array(220 * 3);
+  for (let i = 0; i < 220; i++) {
+    const r = 5 + Math.random() * 9;
+    const th = Math.random() * Math.PI * 2;
+    const ph = Math.acos(2 * Math.random() - 1);
+    starPos[i * 3] = r * Math.sin(ph) * Math.cos(th);
+    starPos[i * 3 + 1] = r * Math.cos(ph) * 0.7;
+    starPos[i * 3 + 2] = r * Math.sin(ph) * Math.sin(th);
+  }
+  starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+  const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: colorBlue, size: 0.045, transparent: true, opacity: 0.55, depthWrite: false }));
+  scene.add(stars);
+
+  // ---- interaction
+  let targetRotY = 0.18, targetRotX = 0.1, curRotY = 0.18, curRotX = 0.1;
+  let dragging = false, lastX = 0, lastY = 0, moved = 0;
+
+  stage.addEventListener('pointerdown', (e) => {
+    if (e.target.closest('.arch-node, .arch-dot')) return;
+    dragging = true; moved = 0; lastX = e.clientX; lastY = e.clientY;
+    stage.classList.add('grabbing');
+  });
+  stage.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    const dx = e.clientX - lastX, dy = e.clientY - lastY;
+    moved += Math.abs(dx) + Math.abs(dy);
+    lastX = e.clientX; lastY = e.clientY;
+    targetRotY += dx * 0.006;
+    targetRotX = Math.max(-0.7, Math.min(0.7, targetRotX + dy * 0.004));
+  });
+  const endDrag = () => { dragging = false; stage.classList.remove('grabbing'); };
+
+  const raycaster = new THREE.Raycaster();
+  stage.addEventListener('pointerup', (e) => {
+    if (dragging && moved < 6) {
+      const r = stage.getBoundingClientRect();
+      const nx = ((e.clientX - r.left) / r.width) * 2 - 1;
+      const ny = -((e.clientY - r.top) / r.height) * 2 + 1;
+      raycaster.setFromCamera(new THREE.Vector2(nx, ny), camera);
+      const hits = raycaster.intersectObjects(meshes.map(m => m.sphere), false);
+      if (hits.length) select(meshes.findIndex(m => m.sphere === hits[0].object));
+    }
+    endDrag();
+  });
+  stage.addEventListener('pointercancel', endDrag);
+  stage.addEventListener('pointerleave', endDrag);
+
+  const resize = () => {
+    const r = stage.getBoundingClientRect();
+    renderer.setSize(r.width, r.height, false);
+    camera.aspect = r.width / r.height;
+    camera.updateProjectionMatrix();
+  };
+  new ResizeObserver(resize).observe(stage);
+  resize();
+
+  // projection of labels
+  const v = new THREE.Vector3();
+  function placeLabels() {
+    const r = stage.getBoundingClientRect();
+    NODES.forEach((n, i) => {
+      meshes[i].sphere.getWorldPosition(v);
+      v.project(camera);
+      const x = (v.x * 0.5 + 0.5) * r.width;
+      const y = (-v.y * 0.5 + 0.5) * r.height;
+      const depth = Math.max(0.55, Math.min(1, 1 - (v.z + 0.2) * 0.35));
+      const el = buttons[i];
+      el.style.transform = `translate(-50%, -50%) translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
+      el.style.opacity = (0.55 + depth * 0.45).toFixed(2);
+      el.style.zIndex = String(10 + Math.round(depth * 10));
+    });
+  }
+
+  let visible = false;
+  new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      visible = e.isIntersecting;
+      if (visible && !reduceMotion) frame();
+    });
+  }, { threshold: 0.05 }).observe(stage);
+
+  const clock = new THREE.Clock();
+  let raf = 0;
+
+  function frame() {
+    if (!visible) return;
+    const t = clock.getElapsedTime();
+    curRotY += (targetRotY - curRotY) * 0.07;
+    curRotX += (targetRotX - curRotX) * 0.07;
+
+    group.rotation.y = curRotY;
+    group.rotation.x = curRotX;
+
+    meshes.forEach((m, i) => {
+      const active = i === selected;
+      const pulse = 1 + Math.sin(t * 1.6 + m.phase) * 0.16;
+      m.sphere.scale.setScalar(active ? 1.7 : pulse);
+      m.halo.material.opacity = active ? 0.36 : 0.1;
+      m.ring.rotation.z = t * 0.4 + m.phase;
+      m.ring.material.opacity = active ? 0.95 : 0.32;
+      m.ring.scale.setScalar(active ? 1.5 : 1);
+    });
+
+    links.forEach(l => {
+      const on = l.a === selected || l.b === selected;
+      l.mat.opacity = on ? 0.85 : 0.22;
+      l.mat.color = on ? colorMain : colorBlue;
+    });
+
+    core.rotation.y = -t * 0.24;
+    core.rotation.x = t * 0.12;
+    coreInner.rotation.y = t * 0.5;
+    coreInner.rotation.z = -t * 0.3;
+    core.material.opacity = 0.32 + Math.sin(t * 1.1) * 0.1;
+    stars.rotation.y = t * 0.02;
+
+    renderer.render(scene, camera);
+    placeLabels();
+    raf = requestAnimationFrame(frame);
+  }
+
+  // first paint even if not yet "visible"
+  group.rotation.set(curRotX, curRotY, 0);
+  renderer.render(scene, camera);
+  placeLabels();
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && visible && !reduceMotion) frame();
+  });
+}
+
+/* ---------- Boot ---------- */
+initBackground();
+initArchitecture();
+</script>
+
+<!-- Privacy-first aggregate counting. Fails silently if not deployed. -->
+<script src="/analytics.js" defer></script>
+</body>
+</html>
