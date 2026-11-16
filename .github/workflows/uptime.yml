@@ -43,7 +43,9 @@ jobs:
           }
 
           check "Homepage"            "$SITE_URL/"                                 200
-          check "Stylesheet"          "$SITE_URL/styles.css"                       200
+          check "Favicon"             "$SITE_URL/favicon.svg"                      200
+          check "Sitemap"             "$SITE_URL/sitemap.xml"                      200
+          check "Robots"              "$SITE_URL/robots.txt"                       200
           check "Analytics beacon"    "$SITE_URL/analytics.js"                     200
           check "Main portrait"       "$SITE_URL/assets/sai-charan-portrait.jpg"   200
           check "Founder photo"       "$SITE_URL/assets/sai-charan-founder.jpg"    200
@@ -55,6 +57,25 @@ jobs:
             results="${results}- Content marker \`YUME AI\`: **ok**%0A"
           else
             results="${results}- Content marker \`YUME AI\`: **fail**%0A"
+            failed=1
+          fi
+
+          # Vite emits hashed bundles; make sure the built app is actually wired up.
+          if grep -q '/assets/index-.*\.js' /tmp/home.html && grep -q '/assets/index-.*\.css' /tmp/home.html; then
+            results="${results}- Bundled app assets: **ok**%0A"
+          else
+            results="${results}- Bundled app assets: **fail**%0A"
+            failed=1
+          fi
+
+          # The scripted chatbot needs its Pages Function reachable.
+          chat_code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 -X POST \
+            -H 'content-type: application/json' \
+            -d '{"message":"hello"}' "$SITE_URL/api/chat" || echo 000)
+          if [ "$chat_code" = "200" ] || [ "$chat_code" = "503" ]; then
+            results="${results}- Chat function reachable (\`${chat_code}\`): **ok**%0A"
+          else
+            results="${results}- Chat function reachable (\`${chat_code}\`): **fail**%0A"
             failed=1
           fi
 

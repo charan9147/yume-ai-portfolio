@@ -1,6 +1,12 @@
 # Dependencies
 node_modules/
 
+# Build output
+dist/
+
+# Local dev-only responsive harness (not part of the build)
+dev-frame.html
+
 # Cloudflare / Wrangler
 .wrangler/
 .dev.vars
