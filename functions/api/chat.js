@@ -22,6 +22,35 @@ const LANGS = new Set([
   'ar', 'fr', 'bn', 'ru', 'de', 'ko',
 ]);
 
+/**
+ * Models are tried in order and the first usable answer wins, so a future
+ * deprecation (Cloudflare retires models regularly) degrades instead of
+ * breaking the assistant. All are current Workers AI text-generation models.
+ */
+const MODELS = [
+  '@cf/meta/llama-4-scout-17b-16e-instruct',
+  '@cf/mistralai/mistral-small-3.1-24b-instruct',
+  '@cf/meta/llama-3.1-8b-instruct-fp8',
+];
+
+/** Anything that looks like a price, so a model answer can be withheld. */
+const MONEY =
+  /(?:[$€£¥₹]\s?\d)|(?:\b\d[\d,.]*\s?(?:usd|inr|rupees?|dollars?|lakh|lakhs|crore|crores|euros?|yen|won|yuan|रुपये|रुपए|లక్ష|లక్షల|ドル|円|元|달러|원|روپے|ريال|رپے))/i;
+
+/** Workers AI has returned both shapes over time; accept either. */
+function readAnswer(result) {
+  if (!result) return '';
+  if (typeof result.response === 'string' && result.response.trim()) {
+    return result.response.trim();
+  }
+  const content = result.choices && result.choices[0] && result.choices[0].message
+    ? result.choices[0].message.content
+    : '';
+  if (typeof content === 'string' && content.trim()) return content.trim();
+  if (typeof result.result === 'string' && result.result.trim()) return result.result.trim();
+  return '';
+}
+
 const NAMES = {
   en: 'English', te: 'Telugu', ja: 'Japanese', pt: 'Portuguese', hi: 'Hindi',
   sa: 'Sanskrit', ur: 'Urdu', zh: 'Chinese', es: 'Spanish', ar: 'Arabic',
@@ -39,7 +68,8 @@ Facts you may use:
 - Education: Class 11 completed; aiming at the MEXT / KOSEN route in Japan, subject to eligibility and selection.
 
 Rules:
-- Never invent confirmed prices, quotations, achievements, awards, degrees, admissions or partnerships. The budget figures on the site are illustrative planning ranges for a student-scale build, never quotations.
+- Never state any price, cost, fee, amount or currency figure — not even a range, an example or a conversion. If asked about cost or budget, say the Budget section shows illustrative planning estimates (never quotations), and that only Sai Charan can give a real quotation by email or WhatsApp.
+- Never invent achievements, awards, degrees, admissions or partnerships.
 - If asked something you do not know, say so and suggest email or WhatsApp.
 - Be warm, concise (under 110 words) and concrete. No markdown headings, no emojis, no bullet lists longer than three items.
 - Answer in the requested language. If the request is in another language, mirror that language instead.`;
@@ -93,23 +123,36 @@ export async function onRequestPost({ request, env }) {
   }
 
   try {
-    const result = await ai.run('@cf/meta/llama-3.1-8b-instruct', {
-      messages: [
-        { role: 'system', content: `${SYSTEM}\n\nReply in ${NAMES[lang]}. The visitor's interface language is ${NAMES[lang]}.` },
-        { role: 'user', content: `${message}\n\n(Answer in ${NAMES[lang]}.)` },
-      ],
-      max_tokens: 320,
-      temperature: 0.4,
-    });
+    const messages = [
+      { role: 'system', content: `${SYSTEM}\n\nReply in ${NAMES[lang]}. The visitor's interface language is ${NAMES[lang]}.` },
+      { role: 'user', content: `${message}\n\n(Answer in ${NAMES[lang]}.)` },
+    ];
 
-    const answer =
-      (result && typeof result.response === 'string' && result.response.trim()) ||
-      (result && typeof result.result === 'string' && result.result.trim()) ||
-      '';
+    let answer = '';
+    for (const model of MODELS) {
+      try {
+        const result = await ai.run(model, { messages, max_tokens: 320, temperature: 0.4 });
+        answer = readAnswer(result);
+        if (answer) break;
+      } catch (err) {
+        // Log the failure reason only — never the visitor's message.
+        console.error(`chat: ${model} failed —`, (err && err.message) || err);
+      }
+    }
 
-    if (!answer) return json({ ok: false, error: 'empty-completion' }, 502);
+    if (!answer) return json({ ok: false, error: 'model-unavailable' }, 503);
+
+    // Belt and braces: the system prompt forbids money figures, but if the
+    // model produces one anyway the answer is withheld so the visitor falls
+    // back to the scripted reply. A planning estimate must never read as a quote.
+    if (MONEY.test(answer)) {
+      console.error('chat: withheld an answer containing a money figure');
+      return json({ ok: false, error: 'unsafe-answer' }, 502);
+    }
+
     return json({ ok: true, answer: answer.slice(0, 1400), lang });
-  } catch {
+  } catch (err) {
+    console.error('chat: model call failed —', (err && err.message) || err);
     return json({ ok: false, error: 'model-unavailable' }, 503);
   }
 }

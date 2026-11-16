@@ -56,11 +56,14 @@ export default function Chat({ onOpenChange }: { onOpenChange?: (open: boolean) 
   const push = (msg: Omit<Msg, 'id'>) => setMessages((prev) => [...prev, { ...msg, id: ++seq }]);
 
   const askAi = async (question: string) => {
+    const ctrl = new AbortController();
+    const timer = window.setTimeout(() => ctrl.abort(), 15000);
     try {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ message: question.slice(0, 400), lang }),
+        signal: ctrl.signal,
       });
       if (!res.ok) throw new Error(String(res.status));
       const data = (await res.json()) as { answer?: string };
@@ -69,6 +72,7 @@ export default function Chat({ onOpenChange }: { onOpenChange?: (open: boolean) 
     } catch {
       push({ role: 'bot', text: t.chat.fallback });
     } finally {
+      window.clearTimeout(timer);
       setPending(false);
     }
   };
